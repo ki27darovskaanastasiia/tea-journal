@@ -8,6 +8,7 @@ import 'console_app.dart';
 
 /// Точка входу: збирає всі шари через Dependency Injection.
 Future<void> main() async {
+  // Єдине місце, де вибирається реалізація сховища
   final TeaRepository repository = InMemoryTeaRepository();
 
   final app = ConsoleApp(
