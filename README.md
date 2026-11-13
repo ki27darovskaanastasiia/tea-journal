@@ -6,9 +6,9 @@
 
 ```mermaid
 graph TD
-    P[Presentation<br/>ConsoleApp, main.dart] --> A[Application<br/>Use Cases, Exceptions]
-    P --> I[Infrastructure<br/>InMemoryTeaRepository]
-    A --> D[Domain<br/>Tea, TeaType, TeaRepository]
+    P["Presentation<br/>ConsoleApp<br/>main.dart"] --> A["Application<br/>Use Cases<br/>Exceptions"]
+    P --> I["Infrastructure<br/>InMemory<br/>TeaRepository"]
+    A --> D["Domain<br/>Tea, TeaType<br/>TeaRepository"]
     I --> D
 ```
 
