@@ -4,9 +4,9 @@ class Tea {
   final String id;
   final String name;
   final TeaType type;
-  final int brewTemperature;
-  final int brewTimeSeconds;
-  final int rating;
+  final int brewTemperature; // температура води, °C
+  final int brewTimeSeconds; // час заварювання, секунди
+  final int rating; // оцінка від 1 до 5
   final String notes;
 
   const Tea({
