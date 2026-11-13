@@ -11,20 +11,17 @@ import '../domain/entities/tea_type.dart';
 /// Консольний інтерфейс журналу чаю.
 /// Містить лише взаємодію з користувачем, без бізнес-логіки.
 class ConsoleApp {
-  final AddTeaUseCase _addTea;
-  final GetAllTeasUseCase _getAllTeas;
-  final UpdateTeaUseCase _updateTea;
-  final DeleteTeaUseCase _deleteTea;
+  final AddTeaUseCase addTea;
+  final GetAllTeasUseCase getAllTeas;
+  final UpdateTeaUseCase updateTea;
+  final DeleteTeaUseCase deleteTea;
 
   const ConsoleApp({
-    required AddTeaUseCase addTea,
-    required GetAllTeasUseCase getAllTeas,
-    required UpdateTeaUseCase updateTea,
-    required DeleteTeaUseCase deleteTea,
-  })  : _addTea = addTea,
-        _getAllTeas = getAllTeas,
-        _updateTea = updateTea,
-        _deleteTea = deleteTea;
+    required this.addTea,
+    required this.getAllTeas,
+    required this.updateTea,
+    required this.deleteTea,
+  });
 
   Future<void> run() async {
     while (true) {
@@ -61,12 +58,12 @@ class ConsoleApp {
 
   Future<void> _add() async {
     final tea = _readTea(DateTime.now().millisecondsSinceEpoch.toString());
-    await _addTea(tea);
+    await addTea(tea);
     stdout.writeln('Чай додано. Його id: ${tea.id}');
   }
 
   Future<void> _showAll() async {
-    final teas = await _getAllTeas();
+    final teas = await getAllTeas();
     if (teas.isEmpty) {
       stdout.writeln('Журнал порожній.');
       return;
@@ -82,7 +79,7 @@ class ConsoleApp {
     final id = _readText('Id чаю, який змінити: ');
     final tea = _readTea(id);
     try {
-      await _updateTea(tea);
+      await updateTea(tea);
       stdout.writeln('Чай оновлено.');
     } on TeaNotFoundException catch (e) {
       stdout.writeln('Помилка: $e');
@@ -92,7 +89,7 @@ class ConsoleApp {
   Future<void> _delete() async {
     final id = _readText('Id чаю, який видалити: ');
     try {
-      await _deleteTea(id);
+      await deleteTea(id);
       stdout.writeln('Чай видалено.');
     } on TeaNotFoundException catch (e) {
       stdout.writeln('Помилка: $e');
