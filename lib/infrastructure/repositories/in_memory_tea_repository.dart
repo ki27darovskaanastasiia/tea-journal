@@ -21,7 +21,7 @@ class InMemoryTeaRepository implements TeaRepository {
   Future<void> update(Tea tea) async {
     _storage[tea.id] = tea;
   }
-
+ /// Якщо чаю з таким id немає, метод нічого не робить
   @override
   Future<void> delete(String id) async {
     _storage.remove(id);
